@@ -4,10 +4,19 @@ const form = document.getElementById("novoItem");
 //Constante lista recebe a lista toda do HTML, ou seja, a tag <ul>;
 const lista = document.getElementById("lista");
 
+//Constante array "Itens" que irá receber os objetos gerados na função "Cria Elemento" para que sejam salvos no Local Storage;
+const itens = [];
+
 //Detecta quando o botão submit é utilizado, e aciona uma arrow function;
 form.addEventListener("submit", (evento) => {
     //Evita a tentativa de enviar os dados pelo procedimento padrão (backend);
     evento.preventDefault();
+
+    //Constante "nome" que recebe o valor digitado no input "nome";
+    const nome = evento.target.elements["nome"];
+
+    //Constante "quantidade" que recebe o valor digitado no input "quantidade";
+    const quantidade = evento.target.elements["quantidade"];
     
     /*
     //Captura o valor digitado no input "nome" do formulário;
@@ -18,7 +27,11 @@ form.addEventListener("submit", (evento) => {
     */
     
     //Ao clicar no botão submit, chama a função "Cria Elemento" e envia o valor dos inputs "nome" e "quantidade", respectivamente;
-    criaElemento(evento.target.elements["nome"].value, evento.target.elements["quantidade"].value)
+    criaElemento(nome.value, quantidade.value)
+
+    //Apaga os dados de input do formulário após o click de submit;
+    nome.value = "";
+    quantidade.value = "";
 })
 
 //Função "Cria Elemento" que recebe o valor dos inputs "nome" e "quantidade", respectivamente; 
@@ -42,4 +55,15 @@ function criaElemento(nome, quantidade) {
 
     //Adicionando o "Novo Item" na lista;
     lista.appendChild(novoItem);
+
+    //Criação o objeto "Item Atual" que recebe os valores dos inputs "nome" e "quantidade";
+    const itemAtual = {
+        "nome": nome,
+        "quantidade": quantidade
+    }
+
+    itens.push(itemAtual);
+
+    //Salva no "Local Storage" do navegador o array de objetos "Itens" com os valores dos inputs "nome" e "quantidade". Foi necessário usar o JSON.stringify porque o Local Storage só aceita strings;
+    localStorage.setItem("item", JSON.stringify(itens));
 }
