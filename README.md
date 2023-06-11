@@ -16,7 +16,7 @@ Foi muito bom ter feito este curso, uma vez que reconheço que preciso praticar 
 
 [🔗 Acesse o projeto](https://hyanguimaraes.github.io/Mochila_de_viagem/)
 
-[📚 Página do curso "JavaScript na Web: Armazenando dadso no navegador"](https://cursos.alura.com.br/course/javascript-web-armazenando-dados-navegador)
+[📚 Página do curso "JavaScript na Web: Armazenando dados no navegador"](https://cursos.alura.com.br/course/javascript-web-armazenando-dados-navegador)
 
 🛠️ Tecnologias utilizadas
 ---
