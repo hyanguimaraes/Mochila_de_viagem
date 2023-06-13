@@ -25,7 +25,6 @@ itens.forEach( (elemento) => {
     criaElemento(elemento);
 } )
 
-
 //Detecta quando o botão submit é utilizado, e aciona uma arrow function;
 form.addEventListener("submit", (evento) => {
     //Evita a tentativa de enviar os dados pelo procedimento padrão (backend);
@@ -37,17 +36,31 @@ form.addEventListener("submit", (evento) => {
     //Constante "quantidade" que recebe o valor digitado no input "quantidade";
     const quantidade = evento.target.elements["quantidade"];
 
+    //Constante "existe" criada para verificar se o valor digitado no input "nome" já existe no array itens;
+    const existe = itens.find(elemento => elemento.nome === nome.value);
+
     //Criação o objeto "Item Atual" que recebe os valores dos inputs "nome" e "quantidade";
     const itemAtual = {
         "nome": nome.value,
         "quantidade": quantidade.value
     }
 
-    //Ao clicar no botão submit, chama a função "Cria Elemento" e envia o valor dos inputs "nome" e "quantidade", respectivamente;
-    criaElemento(itemAtual)
-
-    //Adiciona ao array de objetos "Itens" o objeto atual com o nome e quantidade que estava nos inputs;
-    itens.push(itemAtual);
+    //Condicional que verifica que o item que estão tentando adicionar à lista já existe no array "Itens";
+    if(existe) {
+        //Verificação
+        itemAtual.id = existe.id;
+        //Chamada da função "Atualiza Elemento" que atualiza o item atual no HTML;
+        atualizaElemento(itemAtual);
+        //Atualiza o item atual no array itens usando o existe.id como índice do array;
+        itens[existe.id] = itemAtual;
+    } else {
+        //Se o id não existe, o id do novo item será o tamanho atual do array "Itens" (que acabou de receber o novo input);
+        itemAtual.id = itens.length;
+        //Se o id não existe, chama a função "Cria Elemento" e envia o valor dos inputs "nome" e "quantidade", respectivamente;
+        criaElemento(itemAtual);
+        //Adiciona ao array de objetos "Itens" o objeto atual com o nome e quantidade que estava nos inputs;
+        itens.push(itemAtual);
+    }
 
     //Salva no "Local Storage" do navegador o array de objetos "Itens" com os valores dos inputs "nome" e "quantidade". Foi necessário usar o JSON.stringify porque o Local Storage só aceita strings;
     localStorage.setItem("itens", JSON.stringify(itens));
@@ -66,9 +79,10 @@ function criaElemento(item) {
     //Novo item recebe a classe "item" assim como os outro <li> do HTML;
     novoItem.classList.add("item");
 
-    //Constante "Numero Item" coloca o input "quantidade" dentro de uma tag strong;
+    //Constante "Numero Item" coloca o input "quantidade" dentro de uma tag strong e cria um Dataset "data-id" para este item;
     const numeroItem = document.createElement("strong");
     numeroItem.innerHTML = item.quantidade;
+    numeroItem.dataset.id = item.id;
     
     //Append Child coloca "Numero Item" dentro de "Novo Item";
     novoItem.appendChild(numeroItem);
@@ -78,4 +92,10 @@ function criaElemento(item) {
 
     //Adicionando o "Novo Item" na lista;
     lista.appendChild(novoItem);
+}
+
+//Função "Atualiza Elemento" que recebe o item e soma ao valor de "quantidade" dele, no Local Storage, o valor do novo input
+function atualizaElemento(item) {
+    //Seleciona o data-id do item em questão e, através do innerHTML, substitui o valor do input "quantidade" daquele item;
+    document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantidade;
 }
