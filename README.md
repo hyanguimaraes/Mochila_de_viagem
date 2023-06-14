@@ -8,7 +8,7 @@
 ---
 Página do Mochila de viagem: Faça sua lista de itens indispensáveis para levar na sua mochila. Os dados são todos salvos localmente no seu navegador. Sua lista não é perdida caso você feche a guia ou a janela do navegador!
 
-Página criada como estudo de caso para prática de JavaScript do curso "JavaScript na Web: Armazenando dados no navegador" da [Alura](https://www.alura.com.br/) (link abaixo). A ideia aqui era praticar o uso do JavaScript, então, a escola forneceu os arquivos HTML e CSS. Foram feitas algumas alterações em ambos, como a criação de ids em tags do HTML e a estilização do botão de remoção de item no CSS, mas o foco foi criar toda a lógica de criação de tags <li> automaticamente através do JS.
+Página criada como estudo de caso para prática de JavaScript do curso "JavaScript na Web: Armazenando dados no navegador" da [Alura](https://www.alura.com.br/) (link abaixo). A ideia aqui era praticar o uso do JavaScript, então, a escola forneceu os arquivos HTML e CSS. Foram feitas algumas alterações em ambos, como a criação de ids em tags do HTML e a estilização do botão de remoção de item no CSS, mas o foco foi criar toda a lógica de criação de tags de list items automaticamente através do JS.
 
 Ao clicar no botão de Adicionar, os valores digitados nos inputs são armazenados em um objeto "Item Atual" de atributos "nome", "quantidade" e "id". Feita a verificação se este item já existe ou não, o mesmo é adicionado a um array de objetos chamado "Itens" que é transformado em texto e armazenado no Local Storage no navagador, tornando possível que, mesmo que a página seja fechada ou atualizada o JS irá imediatamente recriar a lista usando estes dados que foram armazenados.
 
