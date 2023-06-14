@@ -51,11 +51,13 @@ form.addEventListener("submit", (evento) => {
         itemAtual.id = existe.id;
         //Chamada da função "Atualiza Elemento" que atualiza o item atual no HTML;
         atualizaElemento(itemAtual);
-        //Atualiza o item atual no array itens usando o existe.id como índice do array;
-        itens[existe.id] = itemAtual;
+        //Atualiza o item atual no array itens usando o existe.id como índice do array, garantindo que ele está buscando o elemento correto usando o Find Index para encontrar o elemento que tenha o seu id igual ao item atual;
+        itens[itens.findIndex(elemento => elemento.id === existe.id)] = itemAtual;
     } else {
-        //Se o id não existe, o id do novo item será o tamanho atual do array "Itens" (que acabou de receber o novo input);
-        itemAtual.id = itens.length;
+        //Se o id não existe, o id do novo item será definido por outra IF (criada usando operador ternário):
+            //Se o array itens não estiver vazio ("itens[itens.length - 1] ?"), o id do novo item será igual ao comprimento do array + 1 ("(itens[itens.length - 1]).id + 1").
+            //Caso contrário (Se o array itens estiver vazio), o id do novo item será 0 (": 0");
+        itemAtual.id = itens[itens.length - 1] ? (itens[itens.length - 1]).id + 1 : 0;
         //Se o id não existe, chama a função "Cria Elemento" e envia o valor dos inputs "nome" e "quantidade", respectivamente;
         criaElemento(itemAtual);
         //Adiciona ao array de objetos "Itens" o objeto atual com o nome e quantidade que estava nos inputs;
@@ -90,6 +92,9 @@ function criaElemento(item) {
     //"Novo Item" recebe ele mesmo mais o valor do input "nome";
     novoItem.innerHTML += item.nome;
 
+    //"Novo Item" recebe o botão deleta e envia para a função "Botão Deleta" o id do item;
+    novoItem.appendChild(botaoDeleta(item.id));
+
     //Adicionando o "Novo Item" na lista;
     lista.appendChild(novoItem);
 }
@@ -98,4 +103,30 @@ function criaElemento(item) {
 function atualizaElemento(item) {
     //Seleciona o data-id do item em questão e, através do innerHTML, substitui o valor do input "quantidade" daquele item;
     document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantidade;
+}
+
+//Função "Botão Deleta" que recebe o id do item e cria um botão com o texto "X" que será usado para deletar um item da lista;
+function botaoDeleta(id){
+    //Constante que cria o botão em sí;
+    const elementoBotao = document.createElement("button");
+    //Adiciona o "X" como texto do botão
+    elementoBotao.innerText = "X";
+
+    //Associa o Event Listener ao botão usando uma função (não se pode usar "this" do JS com arrow function). Usamos o "this" para encontrar o botão específico que foi clicado. Parent Node é usado para que delete o <li> todo e não apenas o botão em sí. A função "Botão Deleta" chama a função "Deleta Elemento" enviando o <li> e o id como parâmetros para esta última;
+    elementoBotao.addEventListener("click", function() {
+        deletaElemento(this.parentNode, id);
+    })
+
+    return elementoBotao;
+}
+
+//Função "Deleta Elemento" que recebe uma tag (<li>) e o id do item e os remove;
+function deletaElemento(tag, id){
+    tag.remove();
+
+    //Removendo o elemento do array "itens" usando o splice[índice, quantidade a remover], porém, para que funcione, usamos o Find Index para encontrar o elemento que tenha o seu id igual ao id recebido pela função;
+    itens.splice(itens.findIndex(elemento => elemento.id == id), 1);
+
+    //Sobescreve o Local Storage com o novo array (com o item removido);
+    localStorage.setItem("itens", JSON.stringify(itens));
 }

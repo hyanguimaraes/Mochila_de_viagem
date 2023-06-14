@@ -1,18 +1,18 @@
 <h1 align="center"> Mochila de Viagem </h1>
 
-![](https://github.com/hyanguimaraes/Mochila_de_viagem/blob/main/img/Mochila_de_viagem.gif?raw=true#vitrinedev)
+![](https://github.com/hyanguimaraes/Mochila_de_viagem/blob/main/Mochila_de_viagem.gif?raw=true#vitrinedev)
 
 ![](https://img.shields.io/github/forks/hyanguimaraes/Mochila_de_viagem?style=social) ![](https://img.shields.io/github/last-commit/hyanguimaraes/Mochila_de_viagem?style=plastic)
 
 📝 Descrição do projeto
 ---
-ALTERAR DESCRIÇÃO
-Página do jogo Robotron 2000! Seu objetivo é criar um robô de poder 300 para defender a terra!
-Página criada como estudo de caso para prática de JavaScript do curso "JavaScript: Manipulando o DOM" da [Alura](https://www.alura.com.br/) (links abaixo). A ideia aqui era praticar o uso do JavaScript, então, a escola forneceu os arquivos HTML e CSS. Foram necessárias algumas alterações em ambos, como exemplo a inserção de _data-atributes_ no HTML para manipulação usando o JS, dependendo da sua necessidade. A prática em sí foi criar toda a lógica de soma dos atributos Força, Poder, Energia e Velocidade com base nos valores somados ou subtraídos por cada peça.
+Página do Mochila de viagem: Faça sua lista de itens indispensáveis para levar na sua mochila. Os dados são todos salvos localmente no seu navegador. Sua lista não é perdida caso você feche a guia ou a janela do navegador!
 
-Ao final do curso, foi deixado o desafio de incluir a funcionalidade de mudança de cor a gosto do usuário. Foram disponibilizadas 05 artes pela Alura. Essa implementação fiz criando uma nova seção no HTML com 05 botões de input, um para cada opção de cor, já aplicando a mesma estética do botão "Produção" e efeitos de _hover_ no CSS. Para essa seção usei o _Flexbox_. A lógica para troca das imagens no HTML foi feita no JS usando _eventListeners_.
+Página criada como estudo de caso para prática de JavaScript do curso "JavaScript na Web: Armazenando dados no navegador" da [Alura](https://www.alura.com.br/) (link abaixo). A ideia aqui era praticar o uso do JavaScript, então, a escola forneceu os arquivos HTML e CSS. Foram feitas algumas alterações em ambos, como a criação de ids em tags do HTML e a estilização do botão de remoção de item no CSS, mas o foco foi criar toda a lógica de criação de tags <li> automaticamente através do JS.
 
-Foi muito bom ter feito este curso, uma vez que reconheço que preciso praticar muito o meu JS. Este é só o primeiro de oito cursos que farei durante a formação JavaScript para Web. Aqui Consegui desenvolver bastante minhas habilidades e fazer com que o jogo rodasse com toda a lógica redondinha!
+Ao clicar no botão de Adicionar, os valores digitados nos inputs são armazenados em um objeto "Item Atual" de atributos "nome", "quantidade" e "id". Feita a verificação se este item já existe ou não, o mesmo é adicionado a um array de objetos chamado "Itens" que é transformado em texto e armazenado no Local Storage no navagador, tornando possível que, mesmo que a página seja fechada ou atualizada o JS irá imediatamente recriar a lista usando estes dados que foram armazenados.
+
+Este projeto foi muito desafiador! Praticamente tudo o que foi passado era novo pra mim. Estou satisfeito de ter conseguido finalizar e ter este projeto agora como exemplo e consulta para futuros projetos que envolvam soluções parecidas.
 
 [🔗 Acesse o projeto](https://hyanguimaraes.github.io/Mochila_de_viagem/)
 
